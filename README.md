@@ -2,7 +2,7 @@
 
 ![HotLinks Logo](https://github.com/bbylw/claudepornav/blob/main/demo.png)
 
-> 一个由 Claude 3.7 Sonnet AI 辅助开发的现代化网站导航项目，采用类 YouP 风格设计。
+> 一个由 Claude 3.7 Sonnet AI 辅助开发的现代化网站导航项目，UI和配色模仿 youporn 风格设计。
 
 ## 🌟 特点
 
