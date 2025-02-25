@@ -1,6 +1,6 @@
 # HotLinks - 现代化网站导航
 
-![HotLinks Logo]([https://github.com/bbylw/claudepornav/blob/main/demo.png?raw=true](https://github.com/bbylw/claudepornav/blob/main/demo.png))
+![HotLinks Logo]([https://github.com/bbylw/claudepornav/blob/main/demo.png?raw=true](https://github.com/bbylw/claudepornav/blob/main/demo.png)
 
 > 一个由 Claude 3.7 Sonnet AI 辅助开发的现代化网站导航项目，采用类 YouP 风格设计。
 
