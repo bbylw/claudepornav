@@ -1,35 +1,25 @@
 :root {
-    --primary-color: #ff5e00;
+    --primary-color: #ff5e00; /* 橙色 */
     --secondary-color: #f90;
-    --accent-color: #ff5e00;
-    --background-color: #0f0f0f;
-    --card-background: #252525;
+    --accent-color: #ff7e30;
+    --background-color: #121212;
+    --card-background: #252525; /* 更深沉的卡片背景色 */
     --text-color: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.4);
     --header-height: 80px;
     --gradient-start: #ff5e00;
     --gradient-middle: #f90;
-    --gradient-end: #ff5e00;
-    --card-hover-color: rgba(255, 94, 0, 0.15);
+    --gradient-end: #ff7e30;
+    --card-hover-shadow: rgba(255, 126, 48, 0.3); /* 增强悬停阴影颜色 */
     --button-hover: #f90;
-    --border-color: #3d3d3d;
+    --border-color: #333333;
     --input-background: #1a1a1a;
     --tab-inactive: #1a1a1a;
     --tab-hover: #2a2a2a;
-}
-
-.dark-theme {
-    --primary-color: #f90;
-    --secondary-color: #ff5e00;
-    --accent-color: #ff5e00;
-    --background-color: #1a1a1a;
-    --card-background: #2a2a2a;
-    --text-color: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.4);
-    --card-hover-color: rgba(255, 153, 0, 0.15);
-    --button-hover: #ff5e00;
-    --border-color: #3d3d3d;
-    --input-background: #252525;
+    --border-radius: 12px; /* 增大圆角 */
+    --transition-speed: 0.3s; /* 稍微延长过渡时间 */
+    --primary-gradient: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    --card-glow: 0 0 15px rgba(255, 94, 0, 0.15); /* 新增卡片发光效果 */
 }
 
 * {
@@ -148,170 +138,226 @@ header {
     color: var(--secondary-color);
 }
 
-/* Category tabs styles */
+/* Category tabs container styles */
+.category-tabs-container {
+    margin-bottom: 35px;
+}
+
+.category-heading {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    color: var(--text-color);
+    opacity: 0.9;
+    font-weight: 600;
+    position: relative;
+    padding-left: 18px;
+    letter-spacing: 0.5px;
+}
+
+.category-heading:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 24px;
+    background: var(--primary-gradient);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(255, 94, 0, 0.4);
+}
+
 .category-tabs {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-bottom: 35px;
-}
-
-.tab {
-    padding: 10px 22px;
-    background-color: var(--tab-inactive);
-    border: 1px solid var(--border-color);
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: 500;
-    color: var(--text-color);
-    transition: all 0.3s ease;
-    font-size: 14px;
-    box-shadow: 0 4px 8px var(--shadow-color);
-}
-
-.tab:hover {
-    background-color: var(--tab-hover);
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-}
-
-.tab.active {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    border-color: transparent;
-    box-shadow: 0 4px 12px rgba(255, 94, 0, 0.3);
-}
-
-/* Website card styles */
-main {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px;
-}
-
-.site-card {
-    background-color: var(--card-background);
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 6px 15px var(--shadow-color);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border: 1px solid var(--border-color);
+    margin-bottom: 25px;
+    background-color: rgba(26, 26, 26, 0.85);
+    padding: 18px 22px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 20px var(--shadow-color);
+    border: 1px solid rgba(255, 126, 48, 0.15);
     position: relative;
     overflow: hidden;
-    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all var(--transition-speed) ease;
 }
 
-.site-card::before {
+.category-tabs::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-    transform-origin: left;
+    height: 3px;
+    background: var(--primary-gradient);
+    opacity: 0.9;
+    box-shadow: 0 0 15px rgba(255, 94, 0, 0.5);
 }
 
-.site-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-    border-color: var(--primary-color);
+.category-tabs::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    height: 1px;
+    background: var(--primary-gradient);
+    opacity: 0.3;
 }
 
-.site-card:hover::before {
-    transform: scaleX(1);
-}
-
-.site-icon {
-    font-size: 36px;
-    margin-bottom: 18px;
-    color: var(--primary-color);
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(255, 94, 0, 0.1);
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s ease;
-}
-
-.site-card:hover .site-icon {
-    transform: scale(1.1);
-    color: var(--secondary-color);
-    background: rgba(255, 94, 0, 0.15);
-}
-
-.site-info {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-}
-
-.site-info h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.site-card:hover .site-info h3 {
-    color: var(--primary-color);
-}
-
-.site-info p {
-    font-size: 14px;
+.tab {
+    padding: 10px 22px;
+    background-color: rgba(30, 30, 30, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
     color: var(--text-color);
-    opacity: 0.7;
-    margin-bottom: 20px;
-    height: 44px;
-    overflow: hidden;
-}
-
-.site-card a {
-    display: inline-block;
-    padding: 10px 24px;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-size: 14px;
+    font-size: 0.95rem;
     font-weight: 500;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(255, 94, 0, 0.2);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     position: relative;
-    z-index: 1;
     overflow: hidden;
+    z-index: 1;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(3px);
 }
 
-.site-card a::before {
+.tab::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--button-hover);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    background: var(--primary-gradient);
+    opacity: 0;
     z-index: -1;
+    transition: opacity var(--transition-speed) ease;
 }
 
-.site-card a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 94, 0, 0.3);
+.tab:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 18px rgba(255, 94, 0, 0.3);
+    border-color: rgba(255, 126, 48, 0.4);
+    color: rgba(255, 255, 255, 1);
 }
 
-.site-card a:hover::before {
-    transform: translateX(0);
+.tab:hover::before {
+    opacity: 0.2;
+}
+
+.tab.active {
+    background: var(--primary-gradient);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 5px 15px rgba(255, 94, 0, 0.4), 0 0 15px rgba(255, 94, 0, 0.25);
+    transform: translateY(-2px);
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s infinite;
+}
+
+/* 加载动画样式 */
+.loading {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+}
+
+.loading i {
+    animation: spin 1s infinite linear;
+    filter: drop-shadow(0 0 8px rgba(255, 94, 0, 0.4));
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 网站卡片样式 */
+#sites-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px; /* 增加卡片间距 */
+}
+
+.site-card {
+    position: relative;
+    min-height: 150px;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: all var(--transition-speed) ease-out;
+    overflow: hidden;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+.site-card a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.site-card i {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease, color 0.3s ease;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+
+.site-card:hover i {
+    transform: scale(1.15);
+}
+
+.site-card h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 0.2rem;
+    transition: color 0.3s ease;
+    letter-spacing: 0.3px;
+}
+
+.site-card:hover {
+    transform: translateY(-8px) scale(1.02); /* 增强悬停效果 */
+    box-shadow: 0 10px 20px var(--card-hover-shadow), var(--card-glow); /* 添加悬停阴影和发光效果 */
+    border-color: rgba(255, 126, 48, 0.2);
+}
+
+/* 无结果提示样式 */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 1.2rem;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px var(--shadow-color);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    letter-spacing: 0.5px;
 }
 
 /* Footer styles */
@@ -332,7 +378,7 @@ footer {
     color: var(--primary-color);
     cursor: pointer;
     font-size: 20px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
     width: 40px;
     height: 40px;
     display: flex;
@@ -346,11 +392,24 @@ footer {
 .theme-toggle button:hover {
     transform: rotate(30deg);
     color: var(--secondary-color);
-    box-shadow: 0 4px 15px rgba(255, 94, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(255, 94, 0, 0.25);
+}
+
+/* 完善深色模式适配 */
+body.dark-theme {
+    --background-color: #121212;
+    --card-background: #252525;
+    --text-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --card-hover-shadow: rgba(255, 126, 48, 0.3); /* 深色模式下的悬停阴影 */
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
     header {
         flex-direction: column;
         gap: 25px;
@@ -360,8 +419,24 @@ footer {
         width: 100%;
     }
     
-    main {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    #sites-container {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 12px;
+    }
+
+    .site-card {
+        min-height: 130px;
+        padding: 14px;
+    }
+
+    .site-card i {
+        font-size: 1.8rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .site-card h3 {
+        font-size: 0.9rem;
+        font-weight: 500;
     }
     
     footer {
@@ -369,19 +444,130 @@ footer {
         gap: 15px;
         text-align: center;
     }
+    
+    .sites-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .category-tabs {
+        justify-content: flex-start;
+        gap: 8px;
+    }
+    
+    .tab {
+        padding: 7px 14px;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
     .container {
         padding: 20px 15px;
     }
     
     .category-tabs {
+        padding: 15px 18px;
+        gap: 10px;
+    }
+
+.tab {
+    padding: 10px 22px;
+    background-color: rgba(30, 30, 30, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(3px);
+}
+
+.tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gradient);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.tab:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 18px rgba(255, 94, 0, 0.3); /* 增强悬停阴影 */
+    border-color: rgba(255, 126, 48, 0.4);
+    color: rgba(255, 255, 255, 1);
+}
+
+.tab:hover::before {
+    opacity: 0.2; /* 增加悬停时的渐变效果 */
+}
+
+.tab.active {
+    background: var(--primary-gradient);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 5px 15px rgba(255, 94, 0, 0.4), 0 0 15px rgba(255, 94, 0, 0.25); /* 增强发光效果 */
+    transform: translateY(-2px);
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 5px 15px rgba(255, 94, 0, 0.4), 0 0 15px rgba(255, 94, 0, 0.25); }
+    50% { box-shadow: 0 5px 20px rgba(255, 94, 0, 0.5), 0 0 20px rgba(255, 94, 0, 0.35); }
+    100% { box-shadow: 0 5px 15px rgba(255, 94, 0, 0.4), 0 0 15px rgba(255, 94, 0, 0.25); }
+}
+
+    .category-tabs {
         justify-content: center;
     }
     
-    main {
-        grid-template-columns: 1fr;
+    #sites-container {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+    }
+
+    .site-card {
+        min-height: 100px;
+        padding: 10px;
+    }
+
+    .site-card i {
+        font-size: 1.4rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .site-card h3 {
+        font-size: 0.75rem;
+    }
+    
+    footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .sites-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
     }
     
     .logo {
@@ -392,5 +578,30 @@ footer {
     .logo svg {
         margin-right: 0;
         margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    html {
+        font-size: 13px;
+    }
+    
+    #sites-container {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+    }
+    
+    .site-card {
+        height: 120px;
+        padding: 0.7rem 0.4rem;
+    }
+
+    .site-card i {
+        font-size: 1.4rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .site-card h3 {
+        font-size: 0.7rem;
     }
 }
